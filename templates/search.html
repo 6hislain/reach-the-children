@@ -1,0 +1,134 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Search {% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6 text-center">
+    <form class='d-flex' action='{% url "search" %}' method='GET' autocomplete="off">
+      <input type="text" name="keyword" class='form-control me-1' value='{{ keyword }}' required='true' />
+      <button type='submit' class='btn btn-primary'>Search</button>
+    </form>
+  </div>
+  <div class='col-12 my-4'>
+    <div class='card shadow-sm'>
+      <div class='card-header pb-0 border-0'>
+        <ul class='nav nav-tabs' id='search-tab' role='tablist'>
+          <li class='nav-item' role='presentation'>
+            <button class='nav-link active' id='crop-tab' data-bs-toggle='tab' data-bs-target='#crop' type='button' role='tab' aria-controls='crop' aria-selected='true'>
+              <i class='bi bi-flower1 me-1'></i> {{ crops.count }} Crop
+            </button>
+          </li>
+          <li class='nav-item' role='presentation'>
+            <button class='nav-link' id='season-tab' data-bs-toggle='tab' data-bs-target='#season' type='button' role='tab' aria-controls='season' aria-selected='false'>
+              <i class='bi bi-cloud-rain me-1'></i> {{ seasons.count }} Season
+            </button>
+          </li>
+          <li class='nav-item' role='presentation'>
+            <button class='nav-link' id='category-tab' data-bs-toggle='tab' data-bs-target='#category' type='button' role='tab' aria-controls='category' aria-selected='false'>
+              <i class='bi bi-box me-1'></i> {{ categories.count }} Category
+            </button>
+          </li>
+          <li class='nav-item' role='presentation'>
+            <button class='nav-link' id='transaction-tab' data-bs-toggle='tab' data-bs-target='#transaction' type='button' role='tab' aria-controls='transaction' aria-selected='false'>
+              <i class='bi bi-bar-chart me-1'></i> {{ transactions.count }} Transaction 
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class='card-body'>
+        <div class='tab-content' id='tab-content'>
+          <div class='tab-pane fade show active' id='crop' role='tabpanel' aria-labelledby='crop-tab'>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Season</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Selling Price</th> 
+                  <th scope="col">Production Cost</th> 
+                </tr>
+              </thead>
+              <tbody>
+                {% for crop in crops %}
+                <tr>
+                  <td>{{crop.name}}</td>
+                  <td><img src='/media/{{crop.image}}' width="50"/></td>
+                  <td>{{crop.season.name}}</td>
+                  <td>{{crop.category.name}}</td>
+                  <td>{{crop.selling_price}}</td>
+                  <td>{{crop.production_cost}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class='tab-pane fade' id='transaction' role='tabpanel' aria-labelledby='transaction-tab'>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Crop</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Transaction</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Time</th> 
+                </tr>
+              </thead>
+              <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                  <td><img src='/media/{{transaction.crop.image}}' width='50'/></td>
+                  <td>{{transaction.description}}</td>
+                  <td>{{transaction.transaction_type}}</td>
+                  <td>{{transaction.quantity}}</td>
+                  <td>{{transaction.created_at|timesince}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class='tab-pane fade' id='season' role='tabpanel' aria-labelledby='season-tab'>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Time</th> 
+                </tr>
+              </thead>
+              <tbody>
+                {% for season in seasons %}
+                <tr>
+                  <td>{{season.name}}</td>
+                  <td>{{season.description}}</td>
+                  <td>{{season.created_at|timesince}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class='tab-pane fade' id='category' role='tabpanel' aria-labelledby='category-tab'>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Time</th> 
+                </tr>
+              </thead>
+              <tbody>
+                {% for category in categories %}
+                <tr>
+                  <td>{{category.name}}</td>
+                  <td>{{category.description}}</td>
+                  <td>{{category.created_at|timesince}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

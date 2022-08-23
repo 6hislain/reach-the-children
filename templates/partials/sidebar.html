@@ -1,0 +1,47 @@
+<div class="col-md-2">
+    <div class="card card-body text-center shadow-sm">
+      <h5 class="text-truncate fw-bold">{{ user.username }}</h5>
+      <p class="text-truncate m-0">{{ user.email }}</p>
+    </div>
+    <div class="list-group shadow-sm my-3">
+      <a href="{% url 'home' %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-house-door me-1"></i> Home <span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action {% if 'dashboard' in request.path %} active {% endif %}">
+        <i class="bi bi-speedometer2 me-1"></i> Dashboard <span class="float-end">&rarr;</span>
+      </a>
+      {% if user.is_superuser %}
+      <a href="/admin" class="list-group-item list-group-item-action">
+        <i class="bi bi-shield-lock me-1"></i> Admin Area <span class="float-end">&rarr;</span>
+      </a>
+      {% endif %}
+      <a href="{% url 'analytics' %}" class="list-group-item list-group-item-action {% if 'analytics' in request.path %} active {% endif %}">
+        <i class="bi bi-collection me-1"></i> Analytics <span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'crop.index' %}" class="list-group-item list-group-item-action {% if '/crop' in request.path %} active {% endif %}">
+        <i class="bi bi-flower1 me-1"></i> Crop <span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'season.index' %}" class="list-group-item list-group-item-action {% if '/season' in request.path %} active {% endif %}">
+        <i class="bi bi-cloud-rain me-1"></i> Season <span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'category.index' %}" class="list-group-item list-group-item-action {% if '/category' in request.path %} active {% endif %}">
+        <i class="bi bi-box me-1"></i> Category<span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'transaction.index' %}" class="list-group-item list-group-item-action {% if '/transaction' in request.path %} active {% endif %}">
+        <i class="bi bi-bar-chart me-1"></i> Transaction<span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'cooperative.index' %}" class="list-group-item list-group-item-action {% if '/cooperative' in request.path %} active {% endif %}">
+        <i class="bi bi-people me-1"></i> Cooperative<span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'home' %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-gear me-1"></i> Settings <span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'profile' id=user.id %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-person me-1"></i> My profile <span class="float-end">&rarr;</span>
+      </a>
+      <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-box-arrow-right me-1"></i> Log out <span class="float-end">&rarr;</span>
+      </a>
+    </div>
+  </div>
+  

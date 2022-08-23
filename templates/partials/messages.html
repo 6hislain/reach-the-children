@@ -1,0 +1,9 @@
+{% if messages %}
+<div class='alert bg-secondary'>
+    <ul class='list-unstyled m-0'>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

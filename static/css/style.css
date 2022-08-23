@@ -1,0 +1,16 @@
+html,
+body {
+  background: whitesmoke;
+  min-height: 100vh;
+}
+
+.ck-editor__editable {
+  min-height: 120px !important;
+}
+
+
+.card-img-top {
+  height: 200px !important;
+  object-fit: cover;
+  overflow-y: hidden;
+}
