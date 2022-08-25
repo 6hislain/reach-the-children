@@ -33,6 +33,7 @@
       <td>{{sponsor.created_at}}</td>
       {% if sponsor.user_id == user.id %}
       <td>
+        <a href='#' class='btn btn-success'>Details</a>
         <a href="{% url 'sponsor.edit' id=sponsor.id %}" class="btn btn-info">Edit</a>
         <a href="{% url 'sponsor.delete' id=sponsor.id %}" class="btn btn-warning">Delete</a>
       </td>

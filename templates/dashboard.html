@@ -4,10 +4,16 @@
 {% block title %} Dashboard - Reach the children {% endblock %}
 {% block content %}
 <div class="row">
-  <div class="col-md-3 col-sm-6 mb-3">
+  <div class="col-md-2 col-sm-6 mb-3">
     <div class="card card-body shadow-sm">
       <h1>{{ school_count }}</h1>
       <a href="{% url 'school.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-cloud-rain me-1"></i> School</a>
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-6 mb-3">
+    <div class="card card-body shadow-sm">
+      <h1>{{ sponsor_count }}</h1>
+      <a href="{% url 'sponsor.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-box me-1"></i> Sponsor</a>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 mb-3">
@@ -16,16 +22,10 @@
       <a href="{% url 'home' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-flower1 me-1"></i> Student</a>
     </div>
   </div>
-  <div class="col-md-3 col-sm-6 mb-3">
+  <div class="col-md-5 col-sm-6 mb-3">
     <div class="card card-body shadow-sm">
-      <h1>{{ sponsor_count }}</h1>
-      <a href="{% url 'sponsor.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-box me-1"></i> Sponsor</a>
-    </div>
-  </div>
-  <div class="col-md-3 col-sm-6 mb-3">
-    <div class="card card-body shadow-sm">
-      <h1>{{ visit_count }}</h1>
-      <a href="{% url 'home' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-bar-chart me-1"></i> Visit</a>
+      <h1>{{ payment_count }}</h1>
+      <a href="{% url 'payment.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-bar-chart me-1"></i> Payment</a>
     </div>
   </div>
   <div class="col-md-6">
@@ -81,7 +81,7 @@
       data: {
           labels: ['Student 1', 'Student 2', 'Student 3', 'Student 4', 'Student 5', 'Student 6'],
           datasets: [{
-              label: '# visits',
+              label: '# grades',
               data: [12, 19, 3, 5, 2, 3],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',

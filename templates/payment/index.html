@@ -1,41 +1,41 @@
 {% extends 'layouts/admin.html' %}
 {% load static %}
-{% block title %} School {% endblock %}
+{% block title %} Payment {% endblock %}
 {% block content %}
-<h4>All School</h4>
+<h4>All Payment</h4>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'school.index' %}">School</a></li>
-    <li class="breadcrumb-item active" aria-current="page">All School</li>
+    <li class="breadcrumb-item"><a href="{% url 'payment.index' %}">Payment</a></li>
+    <li class="breadcrumb-item active" aria-current="page">All Payment</li>
   </ol>
 </nav>
-<a href="{% url 'school.create' %}" class="btn btn-primary float-end">Add new school</a>
+<a href="{% url 'payment.create' %}" class="btn btn-primary float-end">Add new payment</a>
 {% include 'partials/messages.html' %}
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Address</th>
-      <th scope="col">Details</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Description</th>
+      <th scope="col">Payment Type</th>
+      <th scope="col">Student</th>
       <th scope="col">Time</th> 
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    {% for school in page_object %}
+    {% for payment in page_object %}
     <tr>
-      <td><img src='/media/{{school.image}}' width='50'/></td>
-      <td>{{school.name}}</td>
-      <td>{{school.address}}</td>
-      <td>{{school.details}}</td>
-      <td>{{school.created_at}}</td>
-      {% if school.user_id == user.id %}
+      <td>{{payment.amount}}</td>
+      <td>{{payment.description}}</td>
+      <td>{{payment.payment_type}}</td>
+      <td>{{payment.student.name}}</td>
+      <td>{{payment.created_at}}</td>
+      {% if payment.user_id == user.id %}
       <td>
         <a href='#' class='btn btn-success'>Details</a>
-        <a href="{% url 'school.edit' id=school.id %}" class="btn btn-info">Edit</a>
-        <a href="{% url 'school.delete' id=school.id %}" class="btn btn-warning">Delete</a>
+        <a href="{% url 'payment.edit' id=payment.id %}" class="btn btn-info">Edit</a>
+        <a href="{% url 'payment.delete' id=payment.id %}" class="btn btn-warning">Delete</a>
       </td>
       {% endif %}
     </tr>

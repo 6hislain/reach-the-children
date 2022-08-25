@@ -3,8 +3,9 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User, auth
+from django.db.models import Sum
 from django.contrib import messages
-from ..models import School, Sponsor, Student, Visit
+from ..models import School, Sponsor, Student, Visit, Payment
 from .payment import *
 from .sponsor import *
 from .student import *
@@ -26,7 +27,7 @@ def home(request):
 @require_http_methods(["GET"])
 @login_required(login_url="signin")
 def dashboard(request):
-    visit_count = Visit.objects.count()
+    payment_count = Payment.objects.all().aggregate(Sum("amount"))["amount__sum"]
     school_count = School.objects.count()
     sponsor_count = Sponsor.objects.count()
     student_count = Student.objects.count()
@@ -35,7 +36,7 @@ def dashboard(request):
         request,
         "dashboard.html",
         {
-            "visit_count": visit_count,
+            "payment_count": payment_count,
             "school_count": school_count,
             "student_count": student_count,
             "sponsor_count": sponsor_count,

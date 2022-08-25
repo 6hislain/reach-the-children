@@ -37,7 +37,12 @@ def sponsor_create(request):
         details = request.POST["details"]
         address = request.POST["address"]
         sponsor = Sponsor(
-            name=name, details=details, address=address, user_id=request.user.id
+            name=name,
+            email=email,
+            phone=phone,
+            details=details,
+            address=address,
+            user_id=request.user.id,
         )
 
         if request.FILES.get("image") != None:

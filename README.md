@@ -22,6 +22,7 @@
   - email
   - detail
   - image
+  - church
 
 - school
 
