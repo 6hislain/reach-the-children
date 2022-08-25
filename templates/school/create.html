@@ -1,0 +1,38 @@
+{% extends 'layouts/admin.html' %}
+{% load static %}
+{% block title %} School {% endblock %}
+{% block content %}
+<h4>Add new school</h4>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'school.index' %}">School</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add new school</li>
+  </ol>
+</nav>
+<form action="#" method="post" enctype='multipart/form-data'>
+  <div class='row'>
+    <div class="col-md-4 mb-2">
+      <label for="name" class="form-label">School Name</label>
+      <input type="text" class="form-control" name='name' placeholder="full name">
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="name" class="form-label">Address</label>
+      <input type="text" class="form-control" name="address" placeholder='province, district, street number' />
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" class="form-control" name='image' accept='image/*' />
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="content" class="form-label">Details</label>
+    <textarea class='form-control' name='details' rows='5' placeholder="School additional information"></textarea>
+  </div>
+  {% csrf_token %}
+  <div class='d-flex justify-content-between'>
+    <button class="btn btn-primary" type="submit">Continue</button>
+    <a class="btn btn-link" href="{% url 'school.index' %}">All school</a>
+  </div>
+</form>
+{% endblock %}

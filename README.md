@@ -19,22 +19,33 @@
   - name
   - phone
   - address
-  - phone
+  - email
+  - detail
+  - image
 
 - school
 
   - name
   - address
+  - detail
   - image
 
-- transaction
+- school history
 
-  - school fees
-  - rent
-  - accomodation
-  - food
+  - student
+  - school
+  - date
+
+- payment
+
+  - payment type
+    - school fees
+    - rent
+    - accomodation
+    - food
 
 - visit
+
   - student
   - date
   - sponsor

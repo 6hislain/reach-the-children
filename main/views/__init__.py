@@ -4,34 +4,41 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from .models import School, Sponsor, Student
+from ..models import School, Sponsor, Student, Visit
+from .payment import *
+from .sponsor import *
+from .student import *
+from .school import *
 
 # Create your views here.
 @require_http_methods(["GET"])
 def home(request):
     schools = School.objects.order_by("-id")[:10]
+    sponsors = Sponsor.objects.order_by("-id")[:10]
 
     return render(
         request,
         "home.html",
-        {"schools": schools},
+        {"schools": schools, "sponsors": sponsors},
     )
 
 
 @require_http_methods(["GET"])
 @login_required(login_url="signin")
 def dashboard(request):
-    product_count = Product.objects.count()
-    service_count = Service.objects.count()
-    notification_count = Notification.objects.count()
+    visit_count = Visit.objects.count()
+    school_count = School.objects.count()
+    sponsor_count = Sponsor.objects.count()
+    student_count = Student.objects.count()
 
     return render(
         request,
         "dashboard.html",
         {
-            "product_count": product_count,
-            "service_count": service_count,
-            "notification_count": notification_count,
+            "visit_count": visit_count,
+            "school_count": school_count,
+            "student_count": student_count,
+            "sponsor_count": sponsor_count,
         },
     )
 
@@ -68,10 +75,6 @@ def signup(request):
         auth.login(request, user_login)
 
         user_model = User.objects.get(email=email)
-        new_profile = Profile.objects.create(
-            user=user_model, profile_user_id=user_model.id
-        )
-        new_profile.save()
         return redirect("dashboard")
 
 

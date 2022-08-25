@@ -1,31 +1,31 @@
 
 {% extends 'layouts/admin.html' %}
 {% load static %}
-{% block title %} Dashboard - Crop demand Market {% endblock %}
+{% block title %} Dashboard - Reach the children {% endblock %}
 {% block content %}
 <div class="row">
   <div class="col-md-3 col-sm-6 mb-3">
     <div class="card card-body shadow-sm">
-      <h1>{{ season_count }}</h1>
-      <a href="{% url 'season.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-cloud-rain me-1"></i> Season</a>
+      <h1>{{ school_count }}</h1>
+      <a href="{% url 'school.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-cloud-rain me-1"></i> School</a>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 mb-3">
     <div class="card card-body shadow-sm">
-      <h1>{{ crop_count }}</h1>
-      <a href="{% url 'crop.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-flower1 me-1"></i> Crop</a>
+      <h1>{{ student_count }}</h1>
+      <a href="{% url 'home' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-flower1 me-1"></i> Student</a>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 mb-3">
     <div class="card card-body shadow-sm">
-      <h1>{{ category_count }}</h1>
-      <a href="{% url 'category.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-box me-1"></i> Category</a>
+      <h1>{{ sponsor_count }}</h1>
+      <a href="{% url 'sponsor.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-box me-1"></i> Sponsor</a>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 mb-3">
     <div class="card card-body shadow-sm">
-      <h1>{{ transaction_count }}</h1>
-      <a href="{% url 'transaction.index' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-bar-chart me-1"></i> Transaction</a>
+      <h1>{{ visit_count }}</h1>
+      <a href="{% url 'home' %}" class='btn btn-sm btn-outline-primary'><i class="bi bi-bar-chart me-1"></i> Visit</a>
     </div>
   </div>
   <div class="col-md-6">
@@ -41,11 +41,11 @@
 <script>
   const production = document.getElementById('production').getContext('2d');
   const production_chart = new Chart(production, {
-      type: 'bar',
+      type: 'pie',
       data: {
-          labels: ['Beans', 'Plantain', 'Cassava', 'potatoes','maize','peas'],
+          labels: ['Sponsor 1', 'Sponsor 2', 'Sponsor 3', 'Sponsor 4', 'Sponsor 5', 'Sponsor 6'],
           datasets: [{
-              label: '# kg per crop',
+              label: '# payments / donations',
               data: [12, 19, 3, 5, 2, 3],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -77,11 +77,11 @@
   
   const profit = document.getElementById('profit').getContext('2d');
   const profit_chart = new Chart(profit, {
-      type: 'bar',
+      type: 'line',
       data: {
-          labels: ['Beans', 'Plantain', 'Cassava', 'potatoes','maize','peas'],
+          labels: ['Student 1', 'Student 2', 'Student 3', 'Student 4', 'Student 5', 'Student 6'],
           datasets: [{
-              label: '# profit per crop',
+              label: '# visits',
               data: [12, 19, 3, 5, 2, 3],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',

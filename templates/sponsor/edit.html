@@ -1,0 +1,68 @@
+{% extends 'layouts/admin.html' %} {% load static %} {% block title %} Sponsor
+{% endblock %} {% block content %}
+<h4>Edit sponsor</h4>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item">
+      <a href="{% url 'sponsor.index' %}">Sponsor</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Edit sponsor</li>
+  </ol>
+</nav>
+<form action="#" method="post" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-md-4 mb-2">
+      <label for="name" class="form-label">Sponsor Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        value="{{ sponsor.name }}"
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="name" class="form-label">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        name="address"
+        value="{{ sponsor.address }}"
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="name" class="form-label">Phone</label>
+      <input
+        type="text"
+        class="form-control"
+        name="phone"
+        value="{{ sponsor.phone }}"
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="name" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        value="{{ sponsor.email }}"
+      />
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" class="form-control" name="image" accept="image/*" />
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="content" class="form-label">Details</label>
+    <textarea class="form-control" name="details" rows="5">
+{{ sponsor.details }}</textarea
+    >
+  </div>
+  {% csrf_token %}
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-primary" type="submit">Continue</button>
+    <a class="btn btn-link" href="{% url 'sponsor.index' %}">All sponsor</a>
+  </div>
+</form>
+{% endblock %}
