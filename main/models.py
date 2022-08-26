@@ -76,10 +76,12 @@ class Visit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.created_at
+        return self.student.name
 
 
-class SchoolHistory(models.Model):
+class Grade(models.Model):
+    marks = models.FloatField(default=0)
+    semester = models.IntegerField(default=1)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=datetime.now)
@@ -87,4 +89,4 @@ class SchoolHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.created_at
+        return self.student.name

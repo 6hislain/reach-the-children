@@ -1,0 +1,56 @@
+{% extends 'layouts/admin.html' %}
+{% load static %}
+{% block title %} Payment {% endblock %}
+{% block content %}
+<h4>All Payment</h4>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'payment.index' %}">Payment</a></li>
+    <li class="breadcrumb-item active" aria-current="page">All Payment</li>
+  </ol>
+</nav>
+<a href="{% url 'payment.create' %}" class="btn btn-primary float-end">Add new payment</a>
+{% include 'partials/messages.html' %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Amount</th>
+      <th scope="col">Description</th>
+      <th scope="col">Payment Type</th>
+      <th scope="col">Student</th>
+      <th scope="col">Time</th> 
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for payment in page_object %}
+    <tr>
+      <td>{{payment.amount}}</td>
+      <td>{{payment.description}}</td>
+      <td>{{payment.payment_type}}</td>
+      <td>{{payment.student.name}}</td>
+      <td>{{payment.created_at}}</td>
+      {% if payment.user_id == user.id %}
+      <td>
+        <a href='#' class='btn btn-success'>Details</a>
+        <a href="{% url 'payment.edit' id=payment.id %}" class="btn btn-info">Edit</a>
+        <a href="{% url 'payment.delete' id=payment.id %}" class="btn btn-warning">Delete</a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<nav aria-label="pagination">
+  <ul class="pagination justify-content-center">
+    {% if page_object.has_previous %}
+    <li class="page-item"><a class="page-link" href='?page={{ page_object.previous_page_number }}'><i class='bi bi-chevron-left'></i></a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="#">{{ page_object.number }} / {{ page_object.paginator.num_pages }}</a></li>
+    {% if page_object.has_next %}
+    <li class="page-item"><a class="page-link" href='?page={{ page_object.next_page_number }}'><i class='bi bi-chevron-right'></i></a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}

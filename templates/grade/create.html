@@ -2,14 +2,12 @@
 {% load static %}
 {% block title %} Payment {% endblock %}
 {% block content %}
-<h4>Edit payment</h4>
+<h4>Add new payment</h4>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item">
-      <a href="{% url 'payment.index' %}">Payment</a>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page">Edit payment</li>
+    <li class="breadcrumb-item"><a href="{% url 'payment.index' %}">Payment</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add new payment</li>
   </ol>
 </nav>
 <form action="#" method="post" enctype='multipart/form-data'>
@@ -17,7 +15,7 @@
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">Student</label>
       <select class='form-control' name='student'>
-        <option value='{{ payment.student_id }}'>{{ payment.student.name }}</option>
+        <option value=''> - select student - </option>
         {% for student in students %}
         <option value='{{ student.id }}'>{{ student.name }}</option>
         {% endfor %}
@@ -25,12 +23,12 @@
     </div>
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">Amount</label>
-      <input type="number" class="form-control" name='amount' value="{{ payment.amount }}">
+      <input type="number" class="form-control" name='amount' placeholder="100,0000,000">
     </div>
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">Payment Type</label>
       <select class='form-control' name='type'>
-        <option value='{{ payment.payment_type }}'>{{ payment.payment_type }}</option>
+        <option value=''> - select payment type - </option>
         <option value='school-fees'>school fees</option>
         <option value='accomodation'>accomodation</option>
         <option value='supplies'>supplies</option>
@@ -39,7 +37,7 @@
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">School</label>
       <select class='form-control' name='school'>
-        <option value='{{ payment.school_id }}'>{{ payment.school.name }}</option>
+        <option value=''> - select school - </option>
         {% for school in schools %}
         <option value='{{ school.id }}'>{{ school.name }}</option>
         {% endfor %}
@@ -48,7 +46,7 @@
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">Sponsor</label>
       <select class='form-control' name='sponsor'>
-        <option value='{{ payment.sponsor_id }}'>{{ payment.sponsor.name }}</option>
+        <option value=''> - select sponsor - </option>
         {% for sponsor in sponsors %}
         <option value='{{ sponsor.id }}'>{{ sponsor.name }}</option>
         {% endfor %}
@@ -57,7 +55,7 @@
   </div>
   <div class="mb-2">
     <label for="content" class="form-label">Description</label>
-    <textarea class='form-control' name='description' rows='5'>{{ payment.description }}</textarea>
+    <textarea class='form-control' name='description' rows='5' placeholder="Payment additional information"></textarea>
   </div>
   {% csrf_token %}
   <div class='d-flex justify-content-between'>

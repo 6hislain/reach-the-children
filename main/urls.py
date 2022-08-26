@@ -29,4 +29,9 @@ urlpatterns = [
     path("payment/<int:id>/edit", views.payment_edit, name="payment.edit"),
     path("payment/<int:id>/delete", views.payment_delete, name="payment.delete"),
     path("payment/<int:id>", views.payment_show, name="payment.show"),
+    path("grade", views.grade_index, name="grade.index"),
+    path("grade/create", views.grade_create, name="grade.create"),
+    path("grade/<int:id>/edit", views.grade_edit, name="grade.edit"),
+    path("grade/<int:id>/delete", views.grade_delete, name="grade.delete"),
+    path("grade/<int:id>", views.grade_show, name="grade.show"),
 ]

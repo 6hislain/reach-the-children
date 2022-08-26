@@ -66,17 +66,28 @@ def payment_edit(request, id):
     payment = get_object_or_404(Payment, pk=id)
 
     if request.method == "GET":
-        return render(request, "payment/edit.html", {"payment": payment})
+        schools = School.objects.all()
+        sponsors = Sponsor.objects.all()
+        students = Student.objects.all()
+
+        return render(
+            request,
+            "payment/edit.html",
+            {
+                "payment": payment,
+                "schools": schools,
+                "sponsors": sponsors,
+                "students": students,
+            },
+        )
 
     elif request.method == "POST":
-        payment.name = request.POST["name"]
-        payment.phone = request.POST["phone"]
-        payment.email = request.POST["email"]
-        payment.details = request.POST["details"]
-        payment.address = request.POST["address"]
-
-        if request.FILES.get("image") != None:
-            payment.image = request.FILES.get("image")
+        payment.amount = request.POST["amount"]
+        payment.student_id = request.POST["student"]
+        payment.sponsor_id = request.POST["sponsor"]
+        payment.school_id = request.POST["school"]
+        payment.description = request.POST["description"]
+        payment.payment_type = request.POST["type"]
 
         if payment.user_id == request.user.id:
             payment.save()
