@@ -1,13 +1,13 @@
 {% extends 'layouts/admin.html' %}
 {% load static %}
-{% block title %} Payment {% endblock %}
+{% block title %} Grade {% endblock %}
 {% block content %}
-<h4>Add new payment</h4>
+<h4>Add new grade</h4>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{% url 'payment.index' %}">Payment</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Add new payment</li>
+    <li class="breadcrumb-item"><a href="{% url 'grade.index' %}">Grade</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add new grade</li>
   </ol>
 </nav>
 <form action="#" method="post" enctype='multipart/form-data'>
