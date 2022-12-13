@@ -26,7 +26,6 @@ def home(request):
 @require_http_methods(["GET"])
 @login_required(login_url="signin")
 def dashboard(request):
-    payment_count = Payment.objects.all().aggregate(Sum("amount"))["amount__sum"]
     school_count = School.objects.count()
     sponsor_count = Sponsor.objects.count()
     student_count = Student.objects.count()
@@ -35,7 +34,6 @@ def dashboard(request):
         request,
         "dashboard.html",
         {
-            "payment_count": payment_count,
             "school_count": school_count,
             "student_count": student_count,
             "sponsor_count": sponsor_count,
