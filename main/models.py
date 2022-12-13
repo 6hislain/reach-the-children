@@ -52,20 +52,6 @@ class Student(models.Model):
         return self.name
 
 
-class Payment(models.Model):
-    amount = models.FloatField(default=0)
-    description = models.TextField()
-    payment_type = models.CharField(max_length=200)
-    created_at = models.DateTimeField(default=datetime.now)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE, blank=True)
-    school = models.ForeignKey(School, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.amount
-
-
 class Visit(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE, blank=True)

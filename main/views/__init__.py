@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 from django.db.models import Sum
 from django.contrib import messages
-from ..models import School, Sponsor, Student, Payment
-from .payment import *
+from ..models import School, Sponsor, Student
 from .sponsor import *
 from .student import *
 from .school import *
