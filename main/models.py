@@ -68,6 +68,7 @@ class Visit(models.Model):
 class Grade(models.Model):
     marks = models.FloatField(default=0)
     semester = models.IntegerField(default=1)
+    year = models.IntegerField(default=2022, blank=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=datetime.now)

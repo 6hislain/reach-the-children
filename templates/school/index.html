@@ -31,13 +31,13 @@
       <td>{{school.address}}</td>
       <td>{{school.details}}</td>
       <td>{{school.created_at}}</td>
-      {% if school.user_id == user.id %}
       <td>
+        {% if school.user_id == user.id %}
         <a href='#' class='btn btn-success'>Details</a>
         <a href="{% url 'school.edit' id=school.id %}" class="btn btn-info">Edit</a>
         <a href="{% url 'school.delete' id=school.id %}" class="btn btn-warning">Delete</a>
+        {% endif %}
       </td>
-      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

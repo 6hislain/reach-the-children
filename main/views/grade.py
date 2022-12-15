@@ -38,18 +38,18 @@ def grade_create(request):
         )
 
     elif request.method == "POST":
-        amount = request.POST["amount"]
+        marks = request.POST["marks"]
+        semester = request.POST["semester"]
+        year = request.POST["year"]
         description = request.POST["description"]
-        grade_type = request.POST["type"]
         student = request.POST["student"]
-        sponsor = request.POST["sponsor"]
         school = request.POST["school"]
         grade = Grade(
-            amount=amount,
+            marks=marks,
+            year=year,
+            semester=semester,
             description=description,
-            grade_type=grade_type,
             student_id=student,
-            sponsor_id=sponsor,
             school_id=school,
             user_id=request.user.id,
         )
@@ -65,17 +65,17 @@ def grade_edit(request, id):
     grade = get_object_or_404(Grade, pk=id)
 
     if request.method == "GET":
-        return render(request, "grade/edit.html", {"grade": grade})
+        schools = School.objects.all()
+        students = Student.objects.all()
+        return render(request, "grade/edit.html", {"grade": grade, "schools": schools})
 
     elif request.method == "POST":
-        grade.name = request.POST["name"]
-        grade.phone = request.POST["phone"]
-        grade.email = request.POST["email"]
-        grade.details = request.POST["details"]
-        grade.address = request.POST["address"]
-
-        if request.FILES.get("image") != None:
-            grade.image = request.FILES.get("image")
+        grade.marks = request.POST["marks"]
+        grade.semester = request.POST["semester"]
+        grade.year = request.POST["year"]
+        grade.description = request.POST["description"]
+        grade.student_id = request.POST["student"]
+        grade.school_id = request.POST["school"]
 
         if grade.user_id == request.user.id:
             grade.save()
