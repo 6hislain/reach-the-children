@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User, auth
 from django.forms.models import model_to_dict
 from django.contrib import messages
-from ..models import Sponsor
+from ..models import Sponsor, Student
 
 
 @login_required(login_url="signin")
@@ -19,10 +19,13 @@ def sponsor_index(request):
     return render(request, "sponsor/index.html", {"page_object": page_object})
 
 
-@login_required(login_url="signin")
 def sponsor_show(request, id):
     sponsor = get_object_or_404(Sponsor, pk=id)
-    return JsonResponse(model_to_dict(sponsor))
+    students = Student.objects.filter(sponsor_id=id).all()
+
+    return render(
+        request, "sponsor/show.html", {"sponsor": sponsor, "students": students}
+    )
 
 
 @login_required(login_url="signin")

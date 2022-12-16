@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User, auth
 from django.forms.models import model_to_dict
 from django.contrib import messages
-from ..models import Student, Sponsor, School
+from ..models import Student, Sponsor, School, Grade
 
 
 @login_required(login_url="signin")
@@ -19,10 +19,11 @@ def student_index(request):
     return render(request, "student/index.html", {"page_object": page_object})
 
 
-@login_required(login_url="signin")
 def student_show(request, id):
     student = get_object_or_404(Student, pk=id)
-    return JsonResponse(model_to_dict(student))
+    grades = Grade.objects.filter(student_id=id).all()
+
+    return render(request, "student/show.html", {"student": student, "grades": grades})
 
 
 @login_required(login_url="signin")

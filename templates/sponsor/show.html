@@ -1,0 +1,62 @@
+{% extends 'layouts/base.html' %} 
+{% load static %}
+{% block title %} {{ sponsor.name }} {% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8 my-auto">
+    <h4 class="fw-bold my-4">Sponsor Information</h4>
+    <table class='table table-bordered'>
+        <tbody>
+            <tr>
+                <td>Sponsor Name</td>
+                <td>{{ sponsor.name }}</td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td>{{ sponsor.phone }}, {{ sponsor.email }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ sponsor.address }}</td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td>{{ sponsor.details|safe }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if students.count %}
+    <h4 class="fw-bold my-4">Students sponsored</h4>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <td><img src="/media/{{student.image}}" width="50" /></td>
+            <td>{{student.name}}</td>
+            <td>{{student.address}}</td>
+            <td>{{student.details}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+  </div>
+  {% if sponsor.image %}
+  <div class="col-md-4">
+    <img
+      src="/media/{{ sponsor.image }}"
+      class="w-100"
+      alt="children"
+    />
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -36,8 +36,8 @@
       <td>{{student.details}}</td>
       <td>{{student.created_at}}</td>
       <td>
+        <a href="{% url 'student.show' id=student.id %}" class='btn btn-success'>Details</a>
         {% if student.user_id == user.id %}
-        <a href='#' class='btn btn-success'>Details</a>
         <a href="{% url 'student.edit' id=student.id %}" class="btn btn-info">Edit</a>
         <a href="{% url 'student.delete' id=student.id %}" class="btn btn-warning">Delete</a>
         {% endif %}
