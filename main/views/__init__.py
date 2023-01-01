@@ -8,6 +8,7 @@ from ..models import School, Sponsor, Student
 from .sponsor import *
 from .student import *
 from .school import *
+from .visit import *
 from .grade import *
 
 # Create your views here.

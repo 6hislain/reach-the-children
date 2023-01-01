@@ -29,4 +29,9 @@ urlpatterns = [
     path("grade/<int:id>/edit", views.grade_edit, name="grade.edit"),
     path("grade/<int:id>/delete", views.grade_delete, name="grade.delete"),
     path("grade/<int:id>", views.grade_show, name="grade.show"),
+    path("visit", views.visit_index, name="visit.index"),
+    path("visit/create", views.visit_create, name="visit.create"),
+    path("visit/<int:id>/edit", views.visit_edit, name="visit.edit"),
+    path("visit/<int:id>/delete", views.visit_delete, name="visit.delete"),
+    path("visit/<int:id>", views.visit_show, name="visit.show"),
 ]
