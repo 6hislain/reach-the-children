@@ -29,7 +29,7 @@
       <td><img src='/media/{{school.image}}' width='50'/></td>
       <td>{{school.name}}</td>
       <td>{{school.address}}</td>
-      <td>{{school.details}}</td>
+      <td>{{school.details|truncatechars:20}}</td>
       <td>{{school.created_at}}</td>
       <td>
         <a href='{% url "school.show" id=school.id %}' class='btn btn-success'>Details</a>

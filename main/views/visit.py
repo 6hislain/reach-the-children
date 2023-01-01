@@ -30,59 +30,52 @@ def visit_create(request):
     if request.method == "GET":
         schools = School.objects.all()
         students = Student.objects.all()
-        sponsors = Sponsor.objects.all()
 
         return render(
             request,
             "visit/create.html",
-            {"schools": schools, "students": students, "sponsors": sponsors},
+            {"schools": schools, "students": students},
         )
 
     elif request.method == "POST":
-        marks = request.POST["marks"]
-        semester = request.POST["semester"]
-        year = request.POST["year"]
         description = request.POST["description"]
         student = request.POST["student"]
         school = request.POST["school"]
-        grade = Grade(
-            marks=marks,
-            year=year,
-            semester=semester,
+        visit = Visit(
             description=description,
             student_id=student,
             school_id=school,
             user_id=request.user.id,
         )
 
-        grade.save()
-
-        messages.info(request, "grade saved")
-        return redirect("grade.index")
+        visit.save()
+        messages.info(request, "visit saved")
+        return redirect("visit.index")
 
 
 @login_required(login_url="signin")
 def visit_edit(request, id):
-    grade = get_object_or_404(Grade, pk=id)
+    visit = get_object_or_404(Visit, pk=id)
 
     if request.method == "GET":
         schools = School.objects.all()
         students = Student.objects.all()
-        return render(request, "visit/edit.html", {"grade": grade, "schools": schools})
+        return render(
+            request,
+            "visit/edit.html",
+            {"visit": visit, "schools": schools, "students": students},
+        )
 
     elif request.method == "POST":
-        grade.marks = request.POST["marks"]
-        grade.semester = request.POST["semester"]
-        grade.year = request.POST["year"]
-        grade.description = request.POST["description"]
-        grade.student_id = request.POST["student"]
-        grade.school_id = request.POST["school"]
+        visit.description = request.POST["description"]
+        visit.student_id = request.POST["student"]
+        visit.school_id = request.POST["school"]
 
-        if grade.user_id == request.user.id:
-            grade.save()
-            messages.info(request, "grade updated")
+        if visit.user_id == request.user.id:
+            visit.save()
+            messages.info(request, "visit updated")
 
-        return redirect("grade.index")
+        return redirect("visit.index")
 
 
 @login_required(login_url="signin")

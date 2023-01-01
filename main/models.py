@@ -54,7 +54,6 @@ class Student(models.Model):
 
 class Visit(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE, blank=True)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=datetime.now)
     description = models.TextField()

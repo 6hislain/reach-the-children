@@ -33,7 +33,7 @@
       <td><img src="/media/{{student.image}}" width="50" /></td>
       <td>{{student.name}}</td>
       <td>{{student.address}}</td>
-      <td>{{student.details}}</td>
+      <td>{{student.details|truncatechars:20}}</td>
       <td>{{student.created_at}}</td>
       <td>
         <a href="{% url 'student.show' id=student.id %}" class='btn btn-success'>Details</a>

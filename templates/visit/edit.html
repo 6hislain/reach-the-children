@@ -1,60 +1,48 @@
 {% extends 'layouts/admin.html' %}
 {% load static %}
-{% block title %} Grade {% endblock %}
+{% block title %} Visit {% endblock %}
 {% block content %}
-<h4>Edit grade</h4>
+<h4>Edit visit</h4>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item">
-      <a href="{% url 'grade.index' %}">grade</a>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page">Edit grade</li>
+    <li class="breadcrumb-item"><a href="{% url 'visit.index' %}">Visit</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit visit</li>
   </ol>
 </nav>
 <form action="#" method="post" enctype='multipart/form-data'>
   <div class='row'>
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">Student</label>
-      <select class='form-control' name='student'>
-        <option value='{{ grade.student.id }}'>{{ grade.student.name }}</option>
+      <select class='form-control' name='student' required>
+        <option value='{{visit.student_id}}'>{{visit.student.name}}</option>
+        {% for student in students %}
+        <option value='{{ student.id }}'>{{ student.name }}</option>
+        {% endfor %}
       </select>
     </div>
     <div class="col-md-4 mb-2">
       <label for="name" class="form-label">School</label>
-      <select class='form-control' name='school'>
-        <option value='{{ grade.school.id }}'>{{ grade.school.name }}</option>
+      <select class='form-control' name='school' required>
+        <option value='{{visit.school_id}}'>{{visit.school.name}}</option>
         {% for school in schools %}
         <option value='{{ school.id }}'>{{ school.name }}</option>
         {% endfor %}
       </select>
     </div>
     <div class="col-md-4 mb-2">
-      <label for="marks" class="form-label">Marks</label>
-      <input type="number" class="form-control" name='marks' value="{{ grade.marks }}">
-    </div>
-    <div class="col-md-4 mb-2">
-      <label for="semester" class="form-label">Semester</label>
-      <select class='form-control' name='semester'>
-        <option value='{{ grade.semester }}'>{{ grade.semester }}</option>
-        <option value='1'>1</option>
-        <option value='2'>2</option>
-        <option value='3'>3</option>
-      </select>
-    </div>
-    <div class="col-md-4 mb-2">
-      <label for="year" class="form-label">Year</label>
-      <input type="number" class="form-control" name='year' value="{{ grade.year }}">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" class="form-control" name='image' accept='image/*' />
     </div>
   </div>
   <div class="mb-2">
     <label for="content" class="form-label">Description</label>
-    <textarea class='form-control' name='description' rows='5' placeholder="Additional information">{{ grade.description }}</textarea>
+    <textarea class='form-control' name='description' rows='5'>{{visit.description}}</textarea>
   </div>
   {% csrf_token %}
   <div class='d-flex justify-content-between'>
     <button class="btn btn-primary" type="submit">Continue</button>
-    <a class="btn btn-link" href="{% url 'grade.index' %}">All grades</a>
+    <a class="btn btn-link" href="{% url 'visit.index' %}">All visits</a>
   </div>
 </form>
 {% endblock %}

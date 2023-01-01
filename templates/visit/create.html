@@ -12,7 +12,7 @@
 </nav>
 <form action="#" method="post" enctype='multipart/form-data'>
   <div class='row'>
-    <div class="col-md-6 mb-2">
+    <div class="col-md-4 mb-2">
       <label for="name" class="form-label">Student</label>
       <select class='form-control' name='student' required>
         <option value=''> - select student - </option>
@@ -21,7 +21,7 @@
         {% endfor %}
       </select>
     </div>
-    <div class="col-md-6 mb-2">
+    <div class="col-md-4 mb-2">
       <label for="name" class="form-label">School</label>
       <select class='form-control' name='school' required>
         <option value=''> - select school - </option>
@@ -30,16 +30,7 @@
         {% endfor %}
       </select>
     </div>
-    <div class="col-md-6 mb-2">
-      <label for="sponsor" class="form-label">Sponsor</label>
-      <select class='form-control' name='sponsor'>
-        <option value=''> - select sponsor - </option>
-        {% for sponsor in sponsors %}
-        <option value='{{ sponsor.id }}'>{{ sponsor.name }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="col-md-6 mb-2">
+    <div class="col-md-4 mb-2">
       <label for="image" class="form-label">Image</label>
       <input type="file" class="form-control" name='image' accept='image/*' />
     </div>
